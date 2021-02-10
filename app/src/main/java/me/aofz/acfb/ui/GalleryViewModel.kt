@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import me.aofz.acfb.model.Fish
 import me.aofz.acfb.repository.Repository
-import me.aofz.acfb.repository.source.remote.FishEntity
 
 class GalleryViewModel(private val repository: Repository) : ViewModel() {
 
-    private val _collection = MutableLiveData<List<FishEntity>>()
+    private val _collection = MutableLiveData<List<Fish>>()
 
-    val collection: LiveData<List<FishEntity>>
+    val collection: LiveData<List<Fish>>
         get() = _collection
 
     fun fetchRemote() {
