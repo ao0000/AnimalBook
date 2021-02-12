@@ -1,4 +1,5 @@
 package me.aofz.acfb
 
-class application {
-}
+import android.app.Application
+
+class Application : Application()
