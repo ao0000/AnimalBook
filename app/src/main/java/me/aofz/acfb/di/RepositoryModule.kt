@@ -1,21 +1,19 @@
 package me.aofz.acfb.di
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import me.aofz.acfb.repository.Repository
-import me.aofz.acfb.repository.source.remote.AcnhService
+import me.aofz.acfb.repository.RepositoryImpl
 import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-object RepositoryModule {
+abstract class RepositoryModule {
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideRepository(service: AcnhService): Repository{
-        return Repository(service)
-    }
-
+    abstract fun provideRepository(repositoryImpl: RepositoryImpl): Repository
+    
 }
