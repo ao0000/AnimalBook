@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="like_sky">#81f1f7</color>
+    <color name="like_leaf">#9dffb0</color>
+    <color name="like_while">#fffffa</color>
+    <color name="like_land">#c48d3f</color>
+    <color name="like_sand">#fff563</color>
+
 </resources>

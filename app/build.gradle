@@ -34,6 +34,7 @@ android {
     }
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 }
 
@@ -65,6 +66,10 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
+
+    // Groupie
+    implementation "com.xwray:groupie:2.9.0"
+    implementation "com.xwray:groupie-viewbinding:2.9.0"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
