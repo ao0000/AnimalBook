@@ -11,7 +11,6 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import me.aofz.acfb.databinding.GalleryFragmentBinding
-import me.aofz.acfb.model.Fish
 
 @AndroidEntryPoint
 class GalleryFragment : Fragment() {
