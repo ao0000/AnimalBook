@@ -1,6 +1,7 @@
 package me.aofz.acfb.ui
 
 import android.view.View
+import coil.load
 import com.xwray.groupie.viewbinding.BindableItem
 import me.aofz.acfb.R
 import me.aofz.acfb.databinding.GalleryItemBinding
@@ -13,6 +14,7 @@ class GalleryItem(val fish: Fish) : BindableItem<GalleryItemBinding>() {
     override fun bind(viewBinding: GalleryItemBinding, position: Int) {
         viewBinding.nameText.text = fish.name
         viewBinding.displayPriceText.text = fish.price.toString()
+        viewBinding.displayImage.load(fish.imageUri)
     }
 
     override fun initializeViewBinding(view: View): GalleryItemBinding =

@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/url_text"
+            android:id="@+id/display_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:textSize="32sp"
@@ -29,8 +29,8 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/url_text"
-            app:layout_constraintTop_toTopOf="@id/url_text"
+            app:layout_constraintStart_toEndOf="@+id/display_image"
+            app:layout_constraintTop_toTopOf="@id/display_image"
             tools:text="sample name" />
 
         <TextView
@@ -40,8 +40,9 @@
             android:layout_marginStart="16dp"
             android:text="price"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/url_text"
-            app:layout_constraintStart_toEndOf="@id/url_text" />
+            app:layout_constraintBottom_toBottomOf="@id/display_image"
+            app:layout_constraintStart_toEndOf="@id/display_image"
+            app:layout_constraintTop_toBottomOf="@+id/name_text" />
 
         <TextView
             android:id="@+id/price_text"
@@ -49,8 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/url_text"
+            app:layout_constraintBottom_toBottomOf="@id/display_image"
             app:layout_constraintStart_toEndOf="@id/display_price_text"
+            app:layout_constraintTop_toBottomOf="@+id/name_text"
             tools:text="000" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
