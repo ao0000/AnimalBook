@@ -33,7 +33,7 @@ class GalleryFragment : Fragment() {
 
         binding.galleryContainer.adapter = adapter
         gallaryObserver()
-        viewModel.fetchRemote()
+        viewModel.getFishList()
     }
 
     private fun gallaryObserver() {

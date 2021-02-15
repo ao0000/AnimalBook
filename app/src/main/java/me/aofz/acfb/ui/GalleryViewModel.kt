@@ -17,7 +17,7 @@ class GalleryViewModel @ViewModelInject constructor(private val repository: Repo
     val collection: LiveData<List<Fish>>
         get() = _collection
 
-    fun fetchRemote() {
+    fun getFishList() {
         viewModelScope.launch {
             _collection.value = repository.getFishList()
         }

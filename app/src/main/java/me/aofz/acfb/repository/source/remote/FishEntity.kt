@@ -2,6 +2,7 @@ package me.aofz.acfb.repository.source.remote
 
 import com.squareup.moshi.Json
 import me.aofz.acfb.model.Fish
+import me.aofz.acfb.repository.source.local.LocalFishEntity
 
 
 data class FishEntity(
@@ -15,6 +16,8 @@ data class FishEntity(
     @Json(name = "image_uri") val imageUri: String
 ) {
     fun toFish() = Fish(id, name.nameJPja, price, iconUri, imageUri)
+
+    fun toLocalEntity() = LocalFishEntity(id, name.nameJPja, price, iconUri, imageUri)
 }
 
 data class Name(
