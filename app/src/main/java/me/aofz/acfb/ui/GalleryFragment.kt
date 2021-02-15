@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.ImageLoader
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
@@ -20,6 +22,7 @@ class GalleryFragment : Fragment() {
     private lateinit var binding: GalleryFragmentBinding
     private val viewModel by viewModels<GalleryViewModel>()
     private val adapter = GroupieAdapter()
+
     @Inject
     lateinit var imageLoader: ImageLoader
 
@@ -35,7 +38,10 @@ class GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.galleryContainer.adapter = adapter
+        binding.galleryContainer.apply {
+            adapter = this@GalleryFragment.adapter
+            layoutManager = GridLayoutManager(context, 4, LinearLayoutManager.VERTICAL, false)
+        }
         galleryObserver()
         viewModel.getFishList()
     }

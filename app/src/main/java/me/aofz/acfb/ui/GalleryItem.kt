@@ -15,8 +15,7 @@ class GalleryItem(val fish: Fish, private val imageLoader: ImageLoader) :
 
     override fun bind(viewBinding: GalleryItemBinding, position: Int) {
         viewBinding.nameText.text = fish.name
-        viewBinding.displayPriceText.text = fish.price.toString()
-        viewBinding.displayImage.load(fish.imageUri, imageLoader)
+        viewBinding.displayImage.load(fish.iconUri, imageLoader)
     }
 
     override fun initializeViewBinding(view: View): GalleryItemBinding =
