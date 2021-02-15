@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import coil.ImageLoader
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import me.aofz.acfb.databinding.GalleryFragmentBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class GalleryFragment : Fragment() {
@@ -18,6 +20,8 @@ class GalleryFragment : Fragment() {
     private lateinit var binding: GalleryFragmentBinding
     private val viewModel by viewModels<GalleryViewModel>()
     private val adapter = GroupieAdapter()
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,16 +36,16 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.galleryContainer.adapter = adapter
-        gallaryObserver()
+        galleryObserver()
         viewModel.getFishList()
     }
 
-    private fun gallaryObserver() {
+    private fun galleryObserver() {
         viewModel.collection.observe(viewLifecycleOwner, Observer {
             it?.let { fishList ->
                 adapter.update(mutableListOf<Group>().apply {
                     fishList.forEach { fish ->
-                        this.add(GalleryItem(fish))
+                        this.add(GalleryItem(fish, imageLoader))
                     }
                 })
             }
