@@ -3,7 +3,6 @@ package me.aofz.acfb.di
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.components.SingletonComponent
 import me.aofz.acfb.repository.Repository
 import me.aofz.acfb.repository.RepositoryImpl
@@ -16,5 +15,5 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun provideRepository(repositoryImpl: RepositoryImpl): Repository
-    
+
 }
