@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -43,7 +44,7 @@ class GalleryFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 4, LinearLayoutManager.VERTICAL, false)
         }
         galleryObserver()
-        viewModel.getFishList()
+        errorObserver()
     }
 
     private fun galleryObserver() {
@@ -54,6 +55,14 @@ class GalleryFragment : Fragment() {
                         this.add(GalleryItem(fish, imageLoader))
                     }
                 })
+            }
+        })
+    }
+
+    private fun errorObserver() {
+        viewModel.errorState.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Toast.makeText(context, viewModel.errorCode + ": error!", Toast.LENGTH_LONG).show()
             }
         })
     }
