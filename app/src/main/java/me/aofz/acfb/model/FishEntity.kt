@@ -1,8 +1,6 @@
-package me.aofz.acfb.repository.source.remote
+package me.aofz.acfb.model
 
 import com.squareup.moshi.Json
-import me.aofz.acfb.model.Fish
-
 
 data class FishEntity(
     val id: Int,
