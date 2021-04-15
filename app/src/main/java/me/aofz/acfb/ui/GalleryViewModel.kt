@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import me.aofz.acfb.model.Fish
-import me.aofz.acfb.model.Resource
+import me.aofz.acfb.model.ResourceState
 import me.aofz.acfb.repository.Repository
 
 class GalleryViewModel @ViewModelInject constructor(private val repository: Repository) :
@@ -27,15 +27,13 @@ class GalleryViewModel @ViewModelInject constructor(private val repository: Repo
 
     init {
         viewModelScope.launch {
-            val resourceFlow = repository.getFishList()
-            resourceFlow.collect {
+            repository.getFishList().collect {
                 when (it) {
-                    is Resource.Success<*> -> _collection.value = it.data as List<Fish>
-                    is Resource.Error<*> -> {
-                        _errorState.value = true
-                        errorCode = it.message as String
+                    is ResourceState.Loading -> {
                     }
-                    else -> {
+                    is ResourceState.Success -> _collection.value = it.data!!
+                    is ResourceState.Error -> {
+                        errorCode = it.exception.toString()
                         _errorState.value = true
                     }
                 }
