@@ -8,21 +8,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.xwray.groupie.Group
-import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import me.aofz.acfb.databinding.GalleryFragmentBinding
 import me.aofz.acfb.model.ResourceState
+import me.aofz.acfb.ui.adapter.GalleryAdapter
 
 @AndroidEntryPoint
 class GalleryFragment : Fragment() {
 
     private lateinit var binding: GalleryFragmentBinding
+
     private val viewModel: GalleryViewModel by viewModels()
-    private val adapter = GroupieAdapter()
+
+    private val galleryAdapter = GalleryAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,10 +34,9 @@ class GalleryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.galleryContainer.apply {
-            adapter = this@GalleryFragment.adapter
-            layoutManager = GridLayoutManager(context, 4, LinearLayoutManager.VERTICAL, false)
+        binding.also {
+            it.lifecycleOwner = viewLifecycleOwner
+            it.adapter = galleryAdapter
         }
 
         lifecycleScope.launchWhenStarted {
@@ -48,13 +46,7 @@ class GalleryFragment : Fragment() {
                         Toast.makeText(context, "Loading", Toast.LENGTH_LONG).show()
                     }
                     is ResourceState.Success -> {
-                        adapter.update(
-                            mutableListOf<Group>().apply {
-                                uiState.data.forEach { fish ->
-                                    this.add(GalleryItem(fish))
-                                }
-                            }
-                        )
+                        galleryAdapter.submitList(uiState.data)
                     }
                     is ResourceState.Error -> {
                         Toast.makeText(context, "Loading", Toast.LENGTH_LONG).show()
