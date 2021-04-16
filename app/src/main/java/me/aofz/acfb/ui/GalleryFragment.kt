@@ -7,25 +7,22 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.ImageLoader
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import me.aofz.acfb.databinding.GalleryFragmentBinding
-import javax.inject.Inject
+import me.aofz.acfb.model.ResourceState
 
 @AndroidEntryPoint
 class GalleryFragment : Fragment() {
 
     private lateinit var binding: GalleryFragmentBinding
-    private val viewModel by viewModels<GalleryViewModel>()
+    private val viewModel: GalleryViewModel by viewModels()
     private val adapter = GroupieAdapter()
-
-    @Inject
-    lateinit var imageLoader: ImageLoader
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,27 +40,27 @@ class GalleryFragment : Fragment() {
             adapter = this@GalleryFragment.adapter
             layoutManager = GridLayoutManager(context, 4, LinearLayoutManager.VERTICAL, false)
         }
-        galleryObserver()
-        errorObserver()
-    }
 
-    private fun galleryObserver() {
-        viewModel.collection.observe(viewLifecycleOwner, Observer {
-            it?.let { fishList ->
-                adapter.update(mutableListOf<Group>().apply {
-                    fishList.forEach { fish ->
-                        this.add(GalleryItem(fish, imageLoader))
+        lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect { uiState ->
+                when (uiState) {
+                    is ResourceState.Loading -> {
+                        Toast.makeText(context, "Loading", Toast.LENGTH_LONG).show()
                     }
-                })
+                    is ResourceState.Success -> {
+                        adapter.update(
+                            mutableListOf<Group>().apply {
+                                uiState.data.forEach { fish ->
+                                    this.add(GalleryItem(fish))
+                                }
+                            }
+                        )
+                    }
+                    is ResourceState.Error -> {
+                        Toast.makeText(context, "Loading", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
-        })
-    }
-
-    private fun errorObserver() {
-        viewModel.errorState.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                Toast.makeText(context, viewModel.errorCode + ": error!", Toast.LENGTH_LONG).show()
-            }
-        })
+        }
     }
 }

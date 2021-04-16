@@ -1,13 +1,10 @@
 package me.aofz.acfb.di
 
-import android.content.Context
-import coil.ImageLoader
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import me.aofz.acfb.repository.source.remote.AnimalService
 import retrofit2.Retrofit
@@ -37,14 +34,4 @@ object SourceModule {
             .build()
             .create(AnimalService::class.java)
     }
-
-    @Provides
-    @Singleton
-    fun provideImageLoader(@ApplicationContext context: Context): ImageLoader {
-        return ImageLoader.Builder(context)
-            .availableMemoryPercentage(0.25)
-            .bitmapPoolPercentage(0.25)
-            .build()
-    }
-
 }

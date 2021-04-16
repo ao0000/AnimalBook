@@ -1,10 +1,10 @@
 package me.aofz.acfb.ui
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import me.aofz.acfb.model.Fish
@@ -14,30 +14,15 @@ import me.aofz.acfb.repository.Repository
 class GalleryViewModel @ViewModelInject constructor(private val repository: Repository) :
     ViewModel() {
 
-    private val _collection = MutableLiveData<List<Fish>>()
+    private val _uiState: MutableStateFlow<ResourceState<List<Fish>>> =
+        MutableStateFlow(ResourceState.Loading)
 
-    val collection: LiveData<List<Fish>>
-        get() = _collection
-
-    private val _errorState = MutableLiveData<Boolean>()
-    val errorState: LiveData<Boolean>
-        get() = _errorState
-
-    var errorCode = "no_code"
+    val uiState: StateFlow<ResourceState<List<Fish>>>
+        get() = _uiState
 
     init {
         viewModelScope.launch {
-            repository.getFishList().collect {
-                when (it) {
-                    is ResourceState.Loading -> {
-                    }
-                    is ResourceState.Success -> _collection.value = it.data!!
-                    is ResourceState.Error -> {
-                        errorCode = it.exception.toString()
-                        _errorState.value = true
-                    }
-                }
-            }
+            repository.getFishList().collect { _uiState.value = it }
         }
     }
 }

@@ -1,7 +1,9 @@
 package me.aofz.acfb.repository
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import me.aofz.acfb.model.Fish
 import me.aofz.acfb.model.ResourceState
 import me.aofz.acfb.repository.source.remote.AnimalService
@@ -24,6 +26,6 @@ class RepositoryImpl @Inject constructor(private val service: AnimalService) : R
             } catch (exception: Exception) {
                 emit(ResourceState.Error(exception))
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }
