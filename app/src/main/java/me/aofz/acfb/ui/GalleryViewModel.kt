@@ -1,8 +1,8 @@
 package me.aofz.acfb.ui
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -10,8 +10,10 @@ import kotlinx.coroutines.launch
 import me.aofz.acfb.model.Fish
 import me.aofz.acfb.model.ResourceState
 import me.aofz.acfb.repository.Repository
+import javax.inject.Inject
 
-class GalleryViewModel @ViewModelInject constructor(private val repository: Repository) :
+@HiltViewModel
+class GalleryViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
     private val _uiState: MutableStateFlow<ResourceState<List<Fish>>> =
