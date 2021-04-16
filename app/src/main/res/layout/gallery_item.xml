@@ -17,7 +17,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp">
 
             <ImageView
                 android:id="@+id/display_image"
@@ -34,14 +36,13 @@
                 android:id="@+id/name_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:text="@{fish.name}"
                 android:textAlignment="center"
                 android:textColor="?attr/colorSecondaryVariant"
                 android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="@+id/display_image"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/display_image"
+                app:layout_constraintStart_toStartOf="@id/display_image"
                 tools:text="sample name" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

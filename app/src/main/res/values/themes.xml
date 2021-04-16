@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Acfb" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Acfb" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/like_leaf</item>
         <item name="colorPrimaryVariant">@color/like_sky</item>
