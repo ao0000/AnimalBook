@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import me.aofz.acfb.model.Fish
-import me.aofz.acfb.model.ResourceState
+import me.aofz.acfb.model.LoadingState
 import me.aofz.acfb.repository.Repository
 import javax.inject.Inject
 
@@ -16,15 +16,17 @@ import javax.inject.Inject
 class GalleryViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
-    private val _uiState: MutableStateFlow<ResourceState<List<Fish>>> =
-        MutableStateFlow(ResourceState.Loading)
+    private val _uiState: MutableStateFlow<LoadingState<List<Fish>>> =
+        MutableStateFlow(LoadingState.Loading)
 
-    val uiState: StateFlow<ResourceState<List<Fish>>>
+    val uiState: StateFlow<LoadingState<List<Fish>>>
         get() = _uiState
 
     init {
         viewModelScope.launch {
-            repository.getFishList().collect { _uiState.value = it }
+            repository.getFishList().collect { viewState ->
+                _uiState.value = viewState
+            }
         }
     }
 }

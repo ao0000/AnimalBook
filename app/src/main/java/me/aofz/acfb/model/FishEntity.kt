@@ -12,7 +12,7 @@ data class FishEntity(
     @Json(name = "icon_uri") val iconUri: String,
     @Json(name = "image_uri") val imageUri: String
 ) {
-    fun toModel() = Fish(id, name.nameJPja, price, iconUri, imageUri)
+    fun toModel(): Fish = Fish(id, name.nameJPja, price, iconUri, imageUri)
 }
 
 data class Name(

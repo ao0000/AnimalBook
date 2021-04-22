@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import me.aofz.acfb.BuildConfig
 import me.aofz.acfb.repository.source.remote.AnimalService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -29,7 +30,7 @@ object SourceModule {
     fun provideService(moshi: Moshi): AnimalService {
         return Retrofit
             .Builder()
-            .baseUrl("https://acnhapi.com/")
+            .baseUrl(BuildConfig.SERVER_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(AnimalService::class.java)
