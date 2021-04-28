@@ -1,4 +1,4 @@
-package me.aofz.acfb.ui
+package me.aofz.acfb.ui.fish
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,7 +13,7 @@ import me.aofz.acfb.repository.Repository
 import javax.inject.Inject
 
 @HiltViewModel
-class GalleryViewModel @Inject constructor(private val repository: Repository) :
+class FishViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
     private val _uiState: MutableStateFlow<LoadingState<List<Fish>>> =

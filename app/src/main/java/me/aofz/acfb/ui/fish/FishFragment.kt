@@ -1,4 +1,4 @@
-package me.aofz.acfb.ui
+package me.aofz.acfb.ui.fish
 
 import android.os.Bundle
 import android.view.View
@@ -10,16 +10,16 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import me.aofz.acfb.R
-import me.aofz.acfb.databinding.GalleryFragmentBinding
+import me.aofz.acfb.databinding.FishFragmentBinding
 import me.aofz.acfb.model.LoadingState
-import me.aofz.acfb.ui.adapter.GalleryAdapter
+import me.aofz.acfb.ui.fish.adapter.GalleryAdapter
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.gallery_fragment) {
+class FishFragment : Fragment(R.layout.fish_fragment) {
 
-    private val binding: GalleryFragmentBinding by viewBinding()
+    private val binding: FishFragmentBinding by viewBinding()
 
-    private val viewModel: GalleryViewModel by viewModels()
+    private val viewModel: FishViewModel by viewModels()
 
     private val adapter = GalleryAdapter()
 
