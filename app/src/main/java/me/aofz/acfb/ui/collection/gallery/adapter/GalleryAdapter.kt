@@ -1,11 +1,11 @@
-package me.aofz.acfb.ui.fish.adapter
+package me.aofz.acfb.ui.collection.gallery.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import me.aofz.acfb.databinding.CollectionItemBinding
+import me.aofz.acfb.databinding.GalleryItemBinding
 import me.aofz.acfb.model.Fish
 
 class GalleryAdapter : ListAdapter<Fish, GalleryViewHolder>(
@@ -18,7 +18,7 @@ class GalleryAdapter : ListAdapter<Fish, GalleryViewHolder>(
         holder.bind(getItem(position))
 }
 
-class GalleryViewHolder(private val binding: CollectionItemBinding) :
+class GalleryViewHolder(private val binding: GalleryItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(fish: Fish) {
@@ -27,7 +27,7 @@ class GalleryViewHolder(private val binding: CollectionItemBinding) :
 
     companion object {
         fun create(parent: ViewGroup): GalleryViewHolder {
-            val binding: CollectionItemBinding = CollectionItemBinding.inflate(
+            val binding: GalleryItemBinding = GalleryItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

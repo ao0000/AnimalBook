@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="4"
-            tools:listitem="@layout/collection_item" />
+            tools:listitem="@layout/gallery_item" />
 
     </LinearLayout>
 

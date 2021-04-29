@@ -1,4 +1,4 @@
-package me.aofz.acfb.ui.fish
+package me.aofz.acfb.ui.collection.gallery
 
 import android.os.Bundle
 import android.view.View
@@ -10,16 +10,18 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import me.aofz.acfb.R
-import me.aofz.acfb.databinding.FishFragmentBinding
+import me.aofz.acfb.databinding.GalleryFragmentBinding
+import me.aofz.acfb.model.Item
 import me.aofz.acfb.model.LoadingState
-import me.aofz.acfb.ui.fish.adapter.GalleryAdapter
+import me.aofz.acfb.ui.collection.CollectionFragment.Companion.ITEM_KEY
+import me.aofz.acfb.ui.collection.gallery.adapter.GalleryAdapter
 
 @AndroidEntryPoint
-class FishFragment : Fragment(R.layout.fish_fragment) {
+class GalleryFragment : Fragment(R.layout.gallery_fragment) {
 
-    private val binding: FishFragmentBinding by viewBinding()
+    private val binding: GalleryFragmentBinding by viewBinding()
 
-    private val viewModel: FishViewModel by viewModels()
+    private val viewModel: GalleryViewModel by viewModels()
 
     private val adapter = GalleryAdapter()
 
@@ -29,6 +31,8 @@ class FishFragment : Fragment(R.layout.fish_fragment) {
             lifecycleOwner = viewLifecycleOwner
             galleryContainer.adapter = adapter
         }
+
+        registerArgument()
 
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
@@ -48,6 +52,13 @@ class FishFragment : Fragment(R.layout.fish_fragment) {
                     }
                 }
             }
+        }
+    }
+
+    private fun registerArgument() {
+        arguments?.let {
+            val item: Item = it.getSerializable(ITEM_KEY) as Item
+            viewModel.registerItemType(item)
         }
     }
 }
