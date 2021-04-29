@@ -1,6 +1,6 @@
 package me.aofz.acfb.model
 
-data class Fish(
+data class Bug(
     val id: Int,
     val name: String,
     val price: Int,
