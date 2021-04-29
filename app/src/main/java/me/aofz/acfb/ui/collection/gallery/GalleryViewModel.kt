@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import me.aofz.acfb.model.Fish
 import me.aofz.acfb.model.Item
+import me.aofz.acfb.model.ItemType
 import me.aofz.acfb.model.LoadingState
 import me.aofz.acfb.repository.Repository
 import javax.inject.Inject
@@ -17,23 +17,26 @@ import javax.inject.Inject
 class GalleryViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
-    private val _uiState: MutableStateFlow<LoadingState<List<Fish>>> =
+    private val _uiState: MutableStateFlow<LoadingState<List<Item>>> =
         MutableStateFlow(LoadingState.Loading)
 
-    val uiState: StateFlow<LoadingState<List<Fish>>>
+    val uiState: StateFlow<LoadingState<List<Item>>>
         get() = _uiState
 
-    private val itemType: MutableStateFlow<Item> = MutableStateFlow(Item.FISH)
-
-    init {
+    fun fetchItem(itemType: ItemType) {
         viewModelScope.launch {
-            repository.getFishList().collect { viewState ->
-                _uiState.value = viewState
+            when (itemType) {
+                ItemType.FISH -> {
+                    repository.getFishList().collect { viewState ->
+                        _uiState.value = viewState
+                    }
+                }
+                ItemType.BUG -> {
+                    repository.getBugList().collect { viewState ->
+                        _uiState.value = viewState
+                    }
+                }
             }
         }
-    }
-
-    fun registerItemType(item: Item) {
-        itemType.value = item
     }
 }

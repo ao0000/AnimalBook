@@ -7,7 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import me.aofz.acfb.R
 import me.aofz.acfb.databinding.CollectionFragmentBinding
-import me.aofz.acfb.model.Item
+import me.aofz.acfb.model.ItemType
 import me.aofz.acfb.ui.collection.adapter.CollectionPagerAdapter
 
 class CollectionFragment : Fragment(R.layout.collection_fragment) {
@@ -28,7 +28,7 @@ class CollectionFragment : Fragment(R.layout.collection_fragment) {
 
     private fun attachTabLayout() {
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
-            tab.text = Item.values()[position].name
+            tab.text = ItemType.values()[position].name
         }.attach()
     }
 

@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import me.aofz.acfb.databinding.GalleryItemBinding
-import me.aofz.acfb.model.Fish
+import me.aofz.acfb.model.Item
 
-class GalleryAdapter : ListAdapter<Fish, GalleryViewHolder>(
+class GalleryAdapter : ListAdapter<Item, GalleryViewHolder>(
     DiffCallBack()
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder =
@@ -21,8 +21,8 @@ class GalleryAdapter : ListAdapter<Fish, GalleryViewHolder>(
 class GalleryViewHolder(private val binding: GalleryItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(fish: Fish) {
-        binding.fish = fish
+    fun bind(item: Item) {
+        binding.item = item
     }
 
     companion object {
@@ -37,9 +37,9 @@ class GalleryViewHolder(private val binding: GalleryItemBinding) :
     }
 }
 
-class DiffCallBack : DiffUtil.ItemCallback<Fish>() {
+class DiffCallBack : DiffUtil.ItemCallback<Item>() {
 
-    override fun areItemsTheSame(oldItem: Fish, newItem: Fish): Boolean = oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean = oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Fish, newItem: Fish): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean = oldItem.equals(newItem)
 }

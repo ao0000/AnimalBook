@@ -1,6 +1,7 @@
 package me.aofz.acfb.model
 
-enum class Item {
-    FISH,
-    BUG
+interface Item {
+    val id: Int
+    val name: String
+    val iconUri: String
 }

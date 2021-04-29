@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import me.aofz.acfb.R
 import me.aofz.acfb.databinding.GalleryFragmentBinding
-import me.aofz.acfb.model.Item
+import me.aofz.acfb.model.ItemType
 import me.aofz.acfb.model.LoadingState
 import me.aofz.acfb.ui.collection.CollectionFragment.Companion.ITEM_KEY
 import me.aofz.acfb.ui.collection.gallery.adapter.GalleryAdapter
@@ -32,7 +32,7 @@ class GalleryFragment : Fragment(R.layout.gallery_fragment) {
             galleryContainer.adapter = adapter
         }
 
-        registerArgument()
+        fetchItem()
 
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
@@ -55,10 +55,10 @@ class GalleryFragment : Fragment(R.layout.gallery_fragment) {
         }
     }
 
-    private fun registerArgument() {
+    private fun fetchItem() {
         arguments?.let {
-            val item: Item = it.getSerializable(ITEM_KEY) as Item
-            viewModel.registerItemType(item)
+            val item: ItemType = it.getSerializable(ITEM_KEY) as ItemType
+            viewModel.fetchItem(item)
         }
     }
 }
