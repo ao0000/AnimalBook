@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/galleryFragment">
+    app:startDestination="@id/collectionFragment">
 
     <fragment
-        android:id="@+id/galleryFragment"
-        android:name="me.aofz.acfb.ui.fish.FishFragment"
-        android:label="GalleryFragment"
-        tools:layout="@layout/fish_fragment" />
+        android:id="@+id/collectionFragment"
+        android:name="me.aofz.acfb.ui.collection.CollectionFragment"
+        android:label="CollectionFragment"
+        tools:layout="@layout/collection_fragment" />
 
 </navigation>
