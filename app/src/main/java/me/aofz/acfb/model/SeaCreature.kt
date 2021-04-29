@@ -1,6 +1,6 @@
 package me.aofz.acfb.model
 
-data class Bug(
+data class SeaCreature(
     override val id: Int,
     override val name: String,
     val price: Int,

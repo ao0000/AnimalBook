@@ -1,6 +1,6 @@
 package me.aofz.acfb.model
 
-interface Item {
+interface Animal {
     val id: Int
     val name: String
     val iconUri: String

@@ -6,4 +6,4 @@ data class Fish(
     val price: Int,
     val imageUri: String,
     override val iconUri: String
-) : Item
+) : Animal

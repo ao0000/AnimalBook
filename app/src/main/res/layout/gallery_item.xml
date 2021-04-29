@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="item"
-            type="me.aofz.acfb.model.Item" />
+            name="animal"
+            type="me.aofz.acfb.model.Animal" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -23,7 +23,7 @@
 
             <ImageView
                 android:id="@+id/gallery_display_image"
-                setImage="@{item.iconUri}"
+                setImage="@{animal.iconUri}"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:scaleType="centerInside"
@@ -36,7 +36,7 @@
                 android:id="@+id/gallery_name_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{item.name}"
+                android:text="@{animal.name}"
                 android:textAlignment="center"
                 android:textColor="?attr/colorSecondaryVariant"
                 android:textSize="8sp"

@@ -9,8 +9,6 @@ data class Availability(
     val time: String,
     val isAllDay: Boolean,
     val isAllYear: Boolean,
-    val location: String,
-    val rarity: String,
     @Json(name = "month-array-northern") val monthArrayNorthern: List<String>,
     @Json(name = "month-array-southern") val monthArraySouthern: List<String>,
     @Json(name = "time-array") val timeArray: List<String>

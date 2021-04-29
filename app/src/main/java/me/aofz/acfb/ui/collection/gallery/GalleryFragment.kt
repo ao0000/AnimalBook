@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import me.aofz.acfb.R
 import me.aofz.acfb.databinding.GalleryFragmentBinding
-import me.aofz.acfb.model.ItemType
+import me.aofz.acfb.model.AnimalType
 import me.aofz.acfb.model.LoadingState
 import me.aofz.acfb.ui.collection.CollectionFragment.Companion.ITEM_KEY
 import me.aofz.acfb.ui.collection.gallery.adapter.GalleryAdapter
@@ -57,8 +57,8 @@ class GalleryFragment : Fragment(R.layout.gallery_fragment) {
 
     private fun fetchItem() {
         arguments?.let {
-            val item: ItemType = it.getSerializable(ITEM_KEY) as ItemType
-            viewModel.fetchItem(item)
+            val animal: AnimalType = it.getSerializable(ITEM_KEY) as AnimalType
+            viewModel.fetchItem(animal)
         }
     }
 }
