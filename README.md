@@ -1,14 +1,12 @@
-# Animal Crossing Book
-This repository is an app that displays fish icons using the free API of Animal Crossing New Horizon. Saves and displays the data retrieved from the network locally.
+# Animal Book
+AnimalBook is an application that displays items in Animal Crossing New Horizon.
 
 ## Tech stack
-- Kotlin
-- Coroutines
+- Kotlin based, Coroutines and Flow
 - Architecture
-    - MVVM Repository pattern
-- Jetpack
+    - MVVM Architecture
+    - Respository pattern
 - Hilt for dependency injection
 - Retrofit
 - Moshi
-- Groupie
 - Coil
