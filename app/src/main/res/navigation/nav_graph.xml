@@ -9,6 +9,21 @@
         android:id="@+id/collectionFragment"
         android:name="me.aofz.acfb.ui.collection.CollectionFragment"
         android:label="CollectionFragment"
-        tools:layout="@layout/collection_fragment" />
+        tools:layout="@layout/collection_fragment">
+        <action
+            android:id="@+id/action_collectionFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="me.aofz.acfb.ui.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="animalType"
+            app:argType="me.aofz.acfb.model.AnimalType" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

@@ -17,13 +17,14 @@ import me.aofz.acfb.ui.collection.CollectionFragment.Companion.ITEM_KEY
 import me.aofz.acfb.ui.collection.gallery.adapter.GalleryAdapter
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.gallery_fragment) {
+class GalleryFragment(onClickItem: (animalType: AnimalType, id: Int) -> Unit) :
+    Fragment(R.layout.gallery_fragment) {
 
     private val binding: GalleryFragmentBinding by viewBinding()
 
     private val viewModel: GalleryViewModel by viewModels()
 
-    private val adapter = GalleryAdapter()
+    private val adapter = GalleryAdapter(onClickItem)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
