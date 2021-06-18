@@ -34,13 +34,15 @@
 
             <TextView
                 android:id="@+id/gallery_name_text"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:text="@{animal.name}"
                 android:textAlignment="center"
                 android:textColor="?attr/colorSecondaryVariant"
                 android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/gallery_display_image"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/gallery_display_image"
                 app:layout_constraintStart_toStartOf="@id/gallery_display_image"
                 tools:text="sample name" />
