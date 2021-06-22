@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import me.aofz.acfb.R
 import me.aofz.acfb.databinding.DetailFragmentBinding
-import me.aofz.acfb.ext.setImage
 import me.aofz.acfb.model.LoadingState
 
 @AndroidEntryPoint
@@ -40,14 +39,7 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
                         Toast.makeText(context, loadingText, Toast.LENGTH_SHORT).show()
                     }
                     is LoadingState.Success -> {
-                        viewState.data.apply {
-                            binding.let {
-                                it.itemName.text = name
-                                it.itemPrice.text = price.toString()
-                                it.detailIconImage.setImage(iconUri)
-                                it.detailImage.setImage(imageUri)
-                            }
-                        }
+                        binding.animal = viewState.data
                         val successText: String = resources.getString(R.string.success_toast_text)
                         Toast.makeText(context, successText, Toast.LENGTH_SHORT).show()
                     }

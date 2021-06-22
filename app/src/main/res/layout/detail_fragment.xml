@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="animal"
+            type="me.aofz.acfb.model.Animal" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,6 +16,7 @@
 
         <ImageView
             android:id="@+id/detail_image"
+            setImage="@{animal.imageUri}"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginTop="60dp"
@@ -22,6 +28,7 @@
 
         <ImageView
             android:id="@+id/detail_icon_image"
+            setImage="@{animal.iconUri}"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_margin="8dp"
@@ -86,6 +93,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:text="@{animal.name}"
                     android:textSize="24sp"
                     tool:text="タイ" />
 
@@ -111,6 +119,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:text="@{Integer.toString(animal.price)}"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
