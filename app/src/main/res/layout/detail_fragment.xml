@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
+    <data></data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,9 +14,21 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginTop="60dp"
+            android:background="@drawable/shape_rounded_corners_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tool:src="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/detail_icon_image"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/shape_rounded_corners_icon"
+            app:layout_constraintBottom_toBottomOf="@id/detail_image"
+            app:layout_constraintEnd_toEndOf="@id/detail_image"
+            tool:src="@mipmap/ic_launcher_round" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/detail_between_image_and_information_guide"
@@ -34,14 +45,79 @@
             app:layout_constraintTop_toTopOf="@id/detail_between_image_and_information_guide"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detail_between_image_and_information_guide" />
+            app:layout_constraintTop_toTopOf="@id/detail_between_image_and_information_guide">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30sp"
+                android:background="@drawable/shape_rounded_corners_view"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/detail_between_index_and_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/item_name_index"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="name"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tool:text="name" />
+
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textSize="24sp"
+                    tool:text="タイ" />
+
+                <TextView
+                    android:id="@+id/item_price_index"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="price"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_name"
+                    tool:text="price" />
+
+                <TextView
+                    android:id="@+id/item_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_price_index"
+                    tool:text="100" />
+
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
