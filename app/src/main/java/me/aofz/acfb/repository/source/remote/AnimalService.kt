@@ -19,7 +19,7 @@ interface AnimalService {
     @GET("v1/fish/{fish_id}")
     suspend fun getFishDetail(@Path("fish_id") fishId: Int): FishEntity
 
-    @GET("v1/bug/{id}")
+    @GET("v1/bugs/{bug_id}")
     suspend fun getBugDetail(@Path("bug_id") bugId: Int): BugEntity
 
     @GET("v1/sea/{sea_creature_id}")
