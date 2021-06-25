@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import me.aofz.acfb.repository.Repository
 import me.aofz.acfb.repository.RepositoryImpl
 import me.aofz.acfb.repository.source.remote.AnimalService
@@ -16,8 +17,9 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideRepository(
-        service: AnimalService
+        service: AnimalService,
+        ioDispatcher: CoroutineDispatcher
     ): Repository {
-        return RepositoryImpl(service)
+        return RepositoryImpl(service, ioDispatcher)
     }
 }

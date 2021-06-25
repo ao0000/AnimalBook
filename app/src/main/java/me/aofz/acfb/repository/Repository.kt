@@ -1,6 +1,6 @@
 package me.aofz.acfb.repository
 
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -24,7 +24,10 @@ interface Repository {
     suspend fun getSeaCreature(seaCreatureId: Int): Flow<LoadingState<SeaCreature>>
 }
 
-class RepositoryImpl(private val service: AnimalService) : Repository {
+class RepositoryImpl(
+    private val service: AnimalService,
+    private val ioDispatcher: CoroutineDispatcher
+) : Repository {
 
     override suspend fun getFishList(): Flow<LoadingState<List<Fish>>> = flow {
         emit(LoadingState.Loading)
@@ -34,8 +37,7 @@ class RepositoryImpl(private val service: AnimalService) : Repository {
         } catch (exception: Exception) {
             emit(LoadingState.Error(exception))
         }
-    }.flowOn(Dispatchers.IO)
-
+    }.flowOn(ioDispatcher)
 
     override suspend fun getBugList(): Flow<LoadingState<List<Bug>>> = flow {
         emit(LoadingState.Loading)
@@ -45,8 +47,7 @@ class RepositoryImpl(private val service: AnimalService) : Repository {
         } catch (exception: Exception) {
             emit(LoadingState.Error(exception))
         }
-    }.flowOn(Dispatchers.IO)
-
+    }.flowOn(ioDispatcher)
 
     override suspend fun getSeaCreatureList(): Flow<LoadingState<List<SeaCreature>>> = flow {
         emit(LoadingState.Loading)
@@ -56,8 +57,7 @@ class RepositoryImpl(private val service: AnimalService) : Repository {
         } catch (exception: Exception) {
             emit(LoadingState.Error(exception))
         }
-    }.flowOn(Dispatchers.IO)
-
+    }.flowOn(ioDispatcher)
 
     override suspend fun getFish(fishId: Int): Flow<LoadingState<Fish>> = flow {
         emit(LoadingState.Loading)
@@ -67,8 +67,7 @@ class RepositoryImpl(private val service: AnimalService) : Repository {
         } catch (exception: Exception) {
             emit(LoadingState.Error(exception))
         }
-    }.flowOn(Dispatchers.IO)
-
+    }.flowOn(ioDispatcher)
 
     override suspend fun getBug(bugId: Int): Flow<LoadingState<Bug>> = flow {
         emit(LoadingState.Loading)
@@ -78,8 +77,7 @@ class RepositoryImpl(private val service: AnimalService) : Repository {
         } catch (exception: Exception) {
             emit(LoadingState.Error(exception))
         }
-    }.flowOn(Dispatchers.IO)
-
+    }.flowOn(ioDispatcher)
 
     override suspend fun getSeaCreature(seaCreatureId: Int): Flow<LoadingState<SeaCreature>> =
         flow {
@@ -90,5 +88,5 @@ class RepositoryImpl(private val service: AnimalService) : Repository {
             } catch (exception: Exception) {
                 emit(LoadingState.Error(exception))
             }
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(ioDispatcher)
 }

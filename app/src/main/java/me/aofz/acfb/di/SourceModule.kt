@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import me.aofz.acfb.BuildConfig
 import me.aofz.acfb.repository.source.remote.AnimalService
 import retrofit2.Retrofit
@@ -35,4 +37,8 @@ object SourceModule {
             .build()
             .create(AnimalService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideDispatcher(): CoroutineDispatcher = Dispatchers.IO
 }
