@@ -9,8 +9,6 @@ import me.aofz.acfb.model.Fish
 import me.aofz.acfb.model.LoadingState
 import me.aofz.acfb.model.SeaCreature
 import me.aofz.acfb.repository.source.remote.AnimalService
-import javax.inject.Inject
-import javax.inject.Singleton
 
 interface Repository {
     suspend fun getFishList(): Flow<LoadingState<List<Fish>>>
@@ -26,8 +24,7 @@ interface Repository {
     suspend fun getSeaCreature(seaCreatureId: Int): Flow<LoadingState<SeaCreature>>
 }
 
-@Singleton
-class RepositoryImpl @Inject constructor(private val service: AnimalService) : Repository {
+class RepositoryImpl(private val service: AnimalService) : Repository {
 
     override suspend fun getFishList(): Flow<LoadingState<List<Fish>>> = flow {
         emit(LoadingState.Loading)
